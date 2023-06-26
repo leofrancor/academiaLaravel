@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Professor;
+use Illuminate\Support\Facades\Storage;
 
 class ProfessorController extends Controller
 {
@@ -25,6 +26,17 @@ class ProfessorController extends Controller
           $professor = new Professor();
         } else {
           $professor = Professor::find($request->input('id'));
+        }
+
+        if ($request->hasFile('arquivo')) {
+          $arquivo = $request->file('arquivo');
+          $arquivoSalvo = $arquivo->store('public/imagens');
+          $arquivoSalvo = explode("/", $arquivoSalvo);
+          $tamanho = count($arquivoSalvo);
+          if ($professor->figura != "") {
+            Storage::delete("public/imagens/$professor->foto");
+          }
+          $professor->foto = $arquivoSalvo[$tamanho-1];
         }
 
         $professor->nome = $request->input('nome');

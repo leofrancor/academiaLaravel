@@ -8,6 +8,7 @@
     <tr>
       <th>ID</th>
       <th>Nome</th>
+      <th>Foto</th>
       <th>E-mail</th>
       <th>Editar</th>
       <th>Excluir</th>
@@ -18,6 +19,11 @@
           <tr>
             <td>{{$professor->id}}</td>
             <td>{{$professor->nome}}</td>
+            <td>
+            @if($professor->foto != "")
+              <img style="width:50px;height:50px;object-fit:cover" src="/storage/imagens/{{$professor->foto}}">
+            @endif
+            </td>
             <td>{{$professor->email}}</td>
             <td><a class='btn btn-primary' href='editar/{{$professor->id}}'>+</a></td>
             <td><a class='btn btn-danger' href='excluir/{{$professor->id}}'>-</a></td>
