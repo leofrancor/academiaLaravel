@@ -19,9 +19,9 @@
           <tr>
             <td>{{$professor->id}}</td>
             <td>{{$professor->nome}}</td>
-            <td>
+            <td align="center">
             @if($professor->foto != "")
-              <img style="width:50px;height:50px;object-fit:cover" src="/storage/imagens/{{$professor->foto}}">
+              <img style="width:150px;height:150px;object-fit:cover" src="/storage/imagens/{{$professor->foto}}">
             @endif
             </td>
             <td>{{$professor->email}}</td>
