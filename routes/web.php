@@ -40,11 +40,19 @@ Route::middleware('auth')->group(function () {
     Route::get('/ficha/editar/{id}', [FichaController::class, 'editar']);
     Route::get('/ficha/excluir/{id}', [FichaController::class, 'excluir']);
     Route::get('/ficha/relatorio', [FichaController::class, 'relatorio']);
+    
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/', function () {
         return view('index');
     });
 
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 require __DIR__.'/auth.php';
