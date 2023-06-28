@@ -97,6 +97,15 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{url('professor/listar')}}">Professores</a>
         </li>
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <a class="nav-link active" aria-current="page" href="{{route('logout')}}" onclick="event.preventDefault();
+                          this.closest('form').submit();">
+                Sair
+              </a>
+          </form>
+        </li>
       </ul>
     </div>
   </div>
