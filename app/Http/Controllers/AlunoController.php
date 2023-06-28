@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Aluno;
+use Illuminate\View\View;
 
 class AlunoController extends Controller
 {
-    function listar() {
+    function listar(): View {
 
-        $alunos = Aluno::orderBy('nome')->get();
+        $alunos = Aluno::orderBy('nome')->paginate(5);
         return view('listagemAluno',
           compact('alunos')
           );

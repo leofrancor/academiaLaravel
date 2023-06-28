@@ -3,6 +3,7 @@
 @section('conteudo')
 <h1>Listagem de Fichas</h1>
 <a class="btn btn-primary mb-2" href="novo">Novo</a>
+<a class="btn btn-primary mb-2" href="relatorio">Relatório</a>
 <table class="table table-striped table-hover table-bordered">
   <thead>
     <tr>
@@ -31,4 +32,5 @@
       @endforeach
   </tbody>
 </table>
+{{ $fichas->links() }}
 @endsection

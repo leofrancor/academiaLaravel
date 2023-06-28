@@ -21,9 +21,10 @@
             <td>{{$aluno->nome}}</td>
             <td>{{$aluno->email}}</td>
             <td><a class='btn btn-primary' href='editar/{{$aluno->id}}'>+</a></td>
-            <td><a class='btn btn-danger' href='excluir/{{$aluno->id}}'>-</a></td>
+            <td><a class='btn btn-danger' onclick="return  confirm('As fichas desse aluno também serão excluídas. Deseja prosseguir?')" href='excluir/{{$aluno->id}}'>-</a></td>
           </tr>
       @endforeach
   </tbody>
 </table>
+{{ $alunos->links() }}
 @endsection

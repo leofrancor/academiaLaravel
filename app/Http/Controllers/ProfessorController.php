@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Professor;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class ProfessorController extends Controller
 {
-    function listar() {
-      $professores = Professor::orderBy('nome')->get();
+    function listar(): View {
+      $professores = Professor::orderBy('nome')->paginate(3);
         return view("listagemProfessor",
           compact('professores'));
       }

@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Ficha;
 use App\Models\Professor;
 use App\Models\Aluno;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\View\View;
 
 class FichaController extends Controller
 {
-    function listar() {
-        $fichas = Ficha::orderBy('id')->get();
+    function listar(): View {
+        $fichas = Ficha::orderBy('id')->paginate(5);
         return view('listagemFicha',
          compact('fichas'));
       }
@@ -54,5 +56,11 @@ class FichaController extends Controller
         $ficha = Ficha::find($id);
         $ficha->delete();
         return redirect('ficha/listar');
+      }
+
+      function relatorio() {
+        $fichas = Ficha::orderBy('id')->get();
+        $pdf = Pdf::loadView('relatorioFichas', compact('fichas'));
+        return $pdf->download('fichas.pdf');
       }
 }

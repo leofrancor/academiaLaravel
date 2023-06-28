@@ -39,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/ficha/salvar', [FichaController::class, 'salvar']);
     Route::get('/ficha/editar/{id}', [FichaController::class, 'editar']);
     Route::get('/ficha/excluir/{id}', [FichaController::class, 'excluir']);
+    Route::get('/ficha/relatorio', [FichaController::class, 'relatorio']);
 
     Route::get('/', function () {
         return view('index');
